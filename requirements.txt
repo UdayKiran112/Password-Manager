@@ -1,1 +1,6 @@
 cryptography
+flask
+flask-login
+flask-wtf
+wtforms
+cryptography
