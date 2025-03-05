@@ -1,3 +1,1 @@
 cryptography
-sqlite3
-tkinter

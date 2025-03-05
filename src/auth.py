@@ -1,6 +1,8 @@
 import os
 import hashlib
+from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+import os
 from config import MASTER_PASSWORD_HASH, SALT_SIZE, PBKDF2_ITERATIONS
 from tkinter import simpledialog, messagebox
 
@@ -8,7 +10,10 @@ from tkinter import simpledialog, messagebox
 def derive_key(master_password: str, salt: bytes) -> bytes:
     """Derives a cryptographic key from the master password using PBKDF2."""
     kdf = PBKDF2HMAC(
-        algorithm=hashlib.sha256(), length=32, salt=salt, iterations=PBKDF2_ITERATIONS
+        algorithm=hashes.SHA256(),  # Correct way
+        length=32,
+        salt=salt,
+        iterations=PBKDF2_ITERATIONS,
     )
     return kdf.derive(master_password.encode())
 
